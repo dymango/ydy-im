@@ -1,5 +1,6 @@
 package com.dyman.im.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.dyman.im.constant.MessageTypeEnum;
 import lombok.Data;
 
@@ -11,16 +12,17 @@ import java.util.Date;
  * @date 2020/1/12
  */
 @Data
-public class Message {
+@TableName("chat_room_message")
+public class ChatRoomMessage extends BaseEntity{
 
+    /**
+     * 房间名
+     */
+    private int roomName;
     /**
      * 发送人
      */
     private int sender;
-    /**
-     * 接收人
-     */
-    private int receiver;
     /**
      * 消息内容
      */
@@ -30,8 +32,4 @@ public class Message {
      * {@link MessageTypeEnum}
      */
     private int msgType;
-    /**
-     * 创建时间
-     */
-    private Date createTime;
 }

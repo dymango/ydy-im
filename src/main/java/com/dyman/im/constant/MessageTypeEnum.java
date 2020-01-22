@@ -5,12 +5,12 @@ package com.dyman.im.constant;
  * @describe
  * @date 2020/1/12
  */
-public enum MessageType {
+public enum MessageTypeEnum {
     TEXT("文本", 0),
     FILE("文件", 1),
     IMAGE("图片", 2);
 
-    MessageType(String name, int code) {
+    MessageTypeEnum(String name, int code) {
         this.name = name;
         this.code = code;
     }

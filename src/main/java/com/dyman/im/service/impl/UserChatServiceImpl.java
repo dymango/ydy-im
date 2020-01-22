@@ -38,7 +38,7 @@ public class UserChatServiceImpl implements UserChatService {
         model.addAttribute("messageList", messageList);
         model.addAttribute("sender", sendUserId);
         model.addAttribute("receiver", toUserId);
-        return "index.html";
+        return "chatroom";
     }
 
     @Override

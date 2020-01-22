@@ -23,7 +23,6 @@ import java.net.InetSocketAddress;
  * @date 2019/9/14
  */
 @Component
-
 @Slf4j
 public class StartUpListener implements ApplicationListener<ApplicationStartedEvent> {
 
@@ -54,7 +53,6 @@ public class StartUpListener implements ApplicationListener<ApplicationStartedEv
             try {
                 eventLoopGroup.shutdownGracefully().sync();
             } catch (InterruptedException e) {
-                e.printStackTrace();
                 log.info("【 netty服务端异常 msg={}】", e.getMessage());
             }
         }

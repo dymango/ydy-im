@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020/1/11
  */
 public class ChatRoomHandlerInitialzer extends ChannelInitializer<Channel> {
+
     private final ChannelGroup group;
 
     public ChatRoomHandlerInitialzer(ChannelGroup group) {
@@ -35,9 +36,7 @@ public class ChatRoomHandlerInitialzer extends ChannelInitializer<Channel> {
         socketChannel.pipeline().addLast(new HttpObjectAggregator(64 * 1024));
         socketChannel.pipeline().addLast(new HttpRequestHandler("/ws"));
         socketChannel.pipeline().addLast(new WebSocketServerProtocolHandler("/ws"));
-//        socketChannel.pipeline().addLast(new EchoServerHandler());
         socketChannel.pipeline().addLast(new TextFrameHandler(group));
         socketChannel.pipeline().addLast(new HeartBeatHandler());
-//        socketChannel.pipeline().addLast(new HttpContentCompressor());
     }
 }
