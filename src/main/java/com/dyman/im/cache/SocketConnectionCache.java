@@ -2,6 +2,8 @@ package com.dyman.im.cache;
 
 import io.netty.channel.ChannelHandlerContext;
 
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -31,5 +33,10 @@ public class SocketConnectionCache {
     public static ConcurrentHashMap.KeySetView<String, ChannelHandlerContext> keySet()
     {
         return channelContextHashMap.keySet();
+    }
+
+    public static Set<Map.Entry<String, ChannelHandlerContext>> entrySet()
+    {
+        return channelContextHashMap.entrySet();
     }
 }

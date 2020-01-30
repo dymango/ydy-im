@@ -13,14 +13,16 @@ spring:
     suffix: .ftl
     template-loader-path: classpath:/templates
   datasource:
-    url: jdbc:mysql://192.168.181.128:3306/im?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://127.0.0.1:3306/im?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
     username: root
-    password: 123456
+    password: root
     hikari:
       minimum-idle: 20
       maximum-pool-size: 50
       max-lifetime: 300000
       connection-timeout: 30000
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 login:
   key: ydy-im
+

@@ -18,7 +18,7 @@ public class ChatRoomMessage extends BaseEntity{
     /**
      * 房间名
      */
-    private int roomName;
+    private String roomName;
     /**
      * 发送人
      */

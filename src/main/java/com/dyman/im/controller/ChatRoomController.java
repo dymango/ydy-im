@@ -1,7 +1,10 @@
 package com.dyman.im.controller;
 
+import com.dyman.im.entity.ChatRoomMessage;
 import com.dyman.im.entity.Message;
+import com.dyman.im.service.ChatRoomService;
 import com.dyman.im.service.UserChatService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,21 +22,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Slf4j
 @RequestMapping("/chatRoom")
+@RequiredArgsConstructor
 public class ChatRoomController {
 
-    @Autowired
-    private UserChatService userChatService;
-
-    @GetMapping("/index")
-    public String index(Model model, Integer sendUserId, Integer toUserId)
-    {
-        return userChatService.index(model, sendUserId, toUserId);
-    }
+    private final ChatRoomService chatRoomService;
 
     @PostMapping("/sendMessage")
     @ResponseBody
-    public void sendMessage(Message message)
+    public void sendMessage(ChatRoomMessage message)
     {
-        userChatService.sendMessage(message);
+        chatRoomService.sendMessage(message);
     }
 }
