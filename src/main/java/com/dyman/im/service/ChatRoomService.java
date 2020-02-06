@@ -10,4 +10,6 @@ import com.dyman.im.entity.ChatRoomMessage;
 public interface ChatRoomService{
 
     void sendMessage(ChatRoomMessage message);
+
+    long getOnlineNumber();
 }

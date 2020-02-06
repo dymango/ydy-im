@@ -23,6 +23,7 @@ public class ChatRoomMessage extends BaseEntity{
      * 发送人
      */
     private int sender;
+    private String nickName;
     /**
      * 消息内容
      */

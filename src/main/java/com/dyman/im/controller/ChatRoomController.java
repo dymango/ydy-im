@@ -33,4 +33,11 @@ public class ChatRoomController {
     {
         chatRoomService.sendMessage(message);
     }
+
+    @PostMapping("/getOnlineNumber")
+    @ResponseBody
+    public long getOnlineNumber()
+    {
+        return chatRoomService.getOnlineNumber();
+    }
 }

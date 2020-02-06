@@ -1,5 +1,6 @@
 package com.dyman.im.config;
 
+import com.dyman.im.util.OnlineNumberCounter;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
@@ -36,13 +37,16 @@ public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-        if(evt instanceof IdleStateEvent)
-        {
-//            ctx.writeAndFlush(HEARTBEAT_SEQUENCE.duplicate()).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
-            ctx.writeAndFlush(new TextWebSocketFrame("HEARTBAT")).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
+        if(evt instanceof IdleStateEvent) {
+            ctx.writeAndFlush(new TextWebSocketFrame("HEARTBAT")).addListener((ChannelFutureListener) channelFuture -> {
+                if (channelFuture.isCancelled()) {
+                    long n = OnlineNumberCounter.getInstance().decrease();
+                    channelFuture.channel().close();
+                    log.info("当前在线人数: {}", n);
+                }
+            });
         }
-        else
-        {
+        else {
             super.userEventTriggered(ctx, evt);
         }
     }

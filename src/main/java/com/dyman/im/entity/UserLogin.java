@@ -26,6 +26,7 @@ public class UserLogin extends BaseEntity {
 
     private String userName;
     private String password;
+    private String nickName;
     private LocalDateTime lastLoginTime;
     private String lastLoginIp;
 }

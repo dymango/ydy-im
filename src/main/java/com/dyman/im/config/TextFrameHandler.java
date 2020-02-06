@@ -1,5 +1,6 @@
 package com.dyman.im.config;
 
+import com.dyman.im.util.OnlineNumberCounter;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -23,8 +24,8 @@ public class TextFrameHandler extends SimpleChannelInboundHandler<TextWebSocketF
         String remoteAddr  = ctx.channel().remoteAddress().toString();
         String localAddr  = ctx.channel().localAddress().toString();
         String id  = ctx.channel().id().asLongText();
-//        SocketConnectionManager.put("123", ctx);
-        log.info("【 有客户端连接过来了 remoteAddr={},localAddr={},id={}】", remoteAddr, localAddr, id);
+        long n = OnlineNumberCounter.getInstance().increment();
+        log.info("【 有客户端连接过来了 remoteAddr={},localAddr={},id={}, 当前在线人数: {}】", remoteAddr, localAddr, id, n);
     }
 
     public TextFrameHandler(ChannelGroup group) {
@@ -48,5 +49,16 @@ public class TextFrameHandler extends SimpleChannelInboundHandler<TextWebSocketF
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame textWebSocketFrame) throws Exception {
         group.writeAndFlush(textWebSocketFrame.retain());
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        super.channelInactive(ctx);
+    }
+
+    @Override
+    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+        long n = OnlineNumberCounter.getInstance().decrease();
+        super.handlerRemoved(ctx);
     }
 }
