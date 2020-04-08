@@ -1,15 +1,25 @@
 package com.dyman.im.controller;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.dyman.im.base.EnumDeSerialzer;
+import com.dyman.im.base.EnumSerialzer;
+import com.dyman.im.constant.MessageTypeEnum;
+import com.dyman.im.dto.TestDto;
+import com.dyman.im.entity.UserLogin;
 import com.dyman.im.service.UserLoginService;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @Author dyman
@@ -35,4 +45,12 @@ public class LoginController {
     {
         return userLoginService.login(request, model, username, password);
     }
+
+    @GetMapping("/getAllUser/{type}")
+    @ResponseBody
+    public MessageTypeEnum getAllUser(@PathVariable("type") MessageTypeEnum messageTypeEnum)
+    {
+        return MessageTypeEnum.IMAGE;
+    }
+
 }

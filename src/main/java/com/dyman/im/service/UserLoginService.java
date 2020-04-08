@@ -4,6 +4,7 @@ import com.dyman.im.entity.UserLogin;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @Author dyman
@@ -17,4 +18,6 @@ public interface UserLoginService {
     String login(HttpServletRequest request, Model model, String userName, String password);
 
     int register(String userName, String password, String ip);
+
+    List<UserLogin> getAllUser();
 }

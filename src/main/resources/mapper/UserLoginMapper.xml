@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dyman.im.mapper.UserLoginMapper">
+
+    <sql id="Base_Column_List" >
+            a.id,
+            a.create_time,
+            a.created_by,
+            a.last_modified_by,
+            a.update_time,
+            a.userName,
+            a.password,
+            a.nickName,
+            a.lastLoginTime,
+            a.lastLoginIp
+      </sql>
+
+</mapper>

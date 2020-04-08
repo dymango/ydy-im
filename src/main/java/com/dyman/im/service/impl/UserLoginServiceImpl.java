@@ -92,11 +92,17 @@ public class UserLoginServiceImpl implements UserLoginService {
 
     @Override
     public int register(String userName, String password, String ip) {
+        log.info("thread __ {}, {}", Thread.currentThread().getId(), Thread.currentThread().getName());
         UserLogin userLogin = new UserLogin();
         userLogin.setUserName(userName);
         userLogin.setNickName(NicknameGenerator.get());
         userLogin.setPassword(EncryptionUtil.md5Encryption(loginKey + password));
         userLogin.setLastLoginIp(ip);
         return userLoginMapper.insert(userLogin);
+    }
+
+    @Override
+    public List<UserLogin> getAllUser() {
+        return userLoginMapper.selectList(null);
     }
 }
