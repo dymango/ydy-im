@@ -3,6 +3,9 @@ package com.dyman.im.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.dyman.im.constant.MessageTypeEnum;
 import lombok.Data;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 
 import java.util.Date;
 
@@ -13,7 +16,7 @@ import java.util.Date;
  */
 @Data
 @TableName("chat_room_message")
-public class ChatRoomMessage extends BaseEntity{
+public class ChatRoomMessage extends BaseEntity {
 
     /**
      * 房间名

@@ -11,4 +11,6 @@ import java.util.List;
  * @Description TODO
  **/
 public interface UserLoginMapper extends BaseMapper<UserLogin> {
+
+    boolean exist(String id);
 }

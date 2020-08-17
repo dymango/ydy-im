@@ -15,5 +15,8 @@
             a.lastLoginTime,
             a.lastLoginIp
       </sql>
+        <select id="exist" resultType="boolean">
+             select count(*) from user_login where user_name = #{id}
+        </select>
 
 </mapper>
